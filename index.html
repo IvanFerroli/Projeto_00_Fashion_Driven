@@ -24,21 +24,172 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <img src="assets/header.svg" alt="fashion-driven-logo">
     </header>
     <main>
-        <section class="feature-selection-container model-selection-container"></section>
-        <section class="feature-selection-container neck-selection-container"></section>
-        <section class="feature-selection-container material-selection-container"></section>
+        <section class="main-container">
+            <section class="feature-selection-container model-selection-container">
+                <span>Escolha o modelo</span>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="round-div" id="t-shirt">
+                            <img src="assets/tshirt.svg" alt="t-shirt">
+                        </div>
+                        <div class="option-span">
+                            <span>T-shirt</span>
+                        </div>
+                    </div>  
+                    <div class="option-box">
+                        <div class="round-div" id="tank-top">
+                            <img src="assets/tank-top.svg" alt="tank-top">
+                        </div>
+                        <div class="option-span">
+                            <span>Regata</span>
+                        </div>
+                    </div> 
+                    <div class="option-box">
+                        <div class="round-div" id="long-sleeves">
+                            <img src="assets/long-sleeves.svg" alt="long-sleeves">
+                        </div>
+                        <div class="option-span">
+                            <span>Manga longa</span>
+                        </div>
+                    </div> 
+            </section>
+            <section class="feature-selection-container neck-selection-container">
+                <span>Escolha a gola</span>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="round-div" id="v-neck">
+                            <img src="assets/v-neck.svg" alt="v-neck">
+                        </div>
+                        <div class="option-span">
+                            <span>Gola V</span>
+                        </div>
+                    </div> 
+                    <div class="option-box">
+                        <div class="round-div" id="shirt">
+                            <img src="assets/shirt.svg" alt="shirt">
+                        </div>
+                        <div class="option-span">
+                            <span>Gola Redonda</span>
+                        </div>
+                    </div> 
+                    <div class="option-box">
+                        <div class="round-div" id="polo-shirt">
+                            <img src="assets/polo-shirt.svg" alt="polo-shirt">
+                        </div>
+                        <div class="option-span">
+                            <span>Gola Polo</span>
+                        </div>
+                    </div> 
+                </div>
+            </section>
+            <section class="feature-selection-container material-selection-container">
+                <span>Escolha o tecido</span>
+                <div class="options-container">
+                    <div class="option-box">
+                        <div class="round-div" id="silk">
+                            <img src="assets/silk.svg" alt="silk">
+                        </div>
+                        <div class="option-span">
+                            <span>Seda</span>
+                        </div>
+                    </div> 
+                    <div class="option-box">
+                        <div class="round-div" id="organic-cotton">
+                            <img src="assets/organic-cotton.svg" alt="organic-cotton">
+                        </div>
+                        <div class="option-span">
+                            <span>Algodão</span>
+                        </div>
+                    </div> 
+                    <div class="option-box">
+                        <div class="round-div" id="poliester">
+                            <img src="assets/quimica.svg" alt="poliester">
+                        </div>
+                        <div class="option-span">
+                            <span>Poliéster</span>
+                        </div>
+                    </div> 
+                </div>
+            </section>
+            <section class="reference-image-container">
+                <span>Imagem de referência</span>
+                <input id="reference-image-input" type="text" placeholder="Insira o link">
+                <button id="reference-image-button">Confirmar pedido</button>
+            </section>
+        </section>
     </main>
         <aside>
             <img src="assets/Ilustração.svg" alt="ilustração">
         </aside>
         <footer>
-            <span>Últimos pedidos</span>
+            <span class="footer-title">Últimos pedidos</span>
+            <div class="last-orders-container">
+                <div class="last-order-box">
+                    <div class="last-orders-image">
+                        <img src="assets/Blusa1.png" alt="blusa1">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">Agata</span>
+                    </div>
+                </div>
+                <div class="last-order-box">
+                    <div class="last-orders-image">
+                        <img src="assets/Blusa1.png" alt="blusa1">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">Agata</span>
+                    </div>
+                </div>
+                <div class="last-order-box">
+                    <div class="last-orders-image">
+                        <img src="assets/Blusa1.png" alt="blusa1">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">Agata</span>
+                    </div>
+                </div>
+                <div class="last-order-box">
+                    <div class="last-orders-image">
+                        <img src="assets/Blusa1.png" alt="blusa1">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">Agata</span>
+                    </div>
+                </div>
+                <div class="last-order-box">
+                    <div class="last-orders-image">
+                        <img src="assets/Blusa1.png" alt="blusa1">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">Agata</span>
+                    </div>
+                </div>
+                <div class="last-order-box">
+                    <div class="last-orders-image">
+                        <img src="assets/Blusa1.png" alt="blusa1">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">Agata</span>
+                    </div>
+                </div>
+                <div class="last-order-box">
+                    <div class="last-orders-image">
+                        <img src="assets/Blusa1.png" alt="blusa1">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">Agata</span>
+                    </div>
+                </div>
+            </div>
         </footer>
     <script src="script.js"></script>
 </body>
