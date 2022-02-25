@@ -38,7 +38,7 @@
                 <span>Escolha o modelo</span>
                 <div class="options-container">
                     <div class="option-box">
-                        <div class="round-div" id="t-shirt">
+                        <div class="round-div" onclick="selectModel(this)" id="t-shirt">
                             <img src="assets/tshirt.svg" alt="t-shirt">
                         </div>
                         <div class="option-span">
@@ -46,7 +46,7 @@
                         </div>
                     </div>  
                     <div class="option-box">
-                        <div class="round-div" id="tank-top">
+                        <div class="round-div" onclick="selectModel(this)" id="tank-top">
                             <img src="assets/tank-top.svg" alt="tank-top">
                         </div>
                         <div class="option-span">
@@ -54,7 +54,7 @@
                         </div>
                     </div> 
                     <div class="option-box">
-                        <div class="round-div" id="long-sleeves">
+                        <div class="round-div" onclick="selectModel(this)" id="long-sleeves">
                             <img src="assets/long-sleeves.svg" alt="long-sleeves">
                         </div>
                         <div class="option-span">
@@ -66,7 +66,7 @@
                 <span>Escolha a gola</span>
                 <div class="options-container">
                     <div class="option-box">
-                        <div class="round-div" id="v-neck">
+                        <div class="round-div" onclick="selectNeck(this)" id="v-neck">
                             <img src="assets/v-neck.svg" alt="v-neck">
                         </div>
                         <div class="option-span">
@@ -74,7 +74,7 @@
                         </div>
                     </div> 
                     <div class="option-box">
-                        <div class="round-div" id="shirt">
+                        <div class="round-div" onclick="selectNeck(this)" id="shirt">
                             <img src="assets/shirt.svg" alt="shirt">
                         </div>
                         <div class="option-span">
@@ -82,7 +82,7 @@
                         </div>
                     </div> 
                     <div class="option-box">
-                        <div class="round-div" id="polo-shirt">
+                        <div class="round-div" onclick="selectNeck(this)" id="polo-shirt">
                             <img src="assets/polo-shirt.svg" alt="polo-shirt">
                         </div>
                         <div class="option-span">
@@ -95,7 +95,7 @@
                 <span>Escolha o tecido</span>
                 <div class="options-container">
                     <div class="option-box">
-                        <div class="round-div" id="silk">
+                        <div class="round-div" onclick="selectMaterial(this)" id="silk">
                             <img src="assets/silk.svg" alt="silk">
                         </div>
                         <div class="option-span">
@@ -103,7 +103,7 @@
                         </div>
                     </div> 
                     <div class="option-box">
-                        <div class="round-div" id="organic-cotton">
+                        <div class="round-div" onclick="selectMaterial(this)" id="organic-cotton">
                             <img src="assets/organic-cotton.svg" alt="organic-cotton">
                         </div>
                         <div class="option-span">
@@ -111,7 +111,7 @@
                         </div>
                     </div> 
                     <div class="option-box">
-                        <div class="round-div" id="poliester">
+                        <div class="round-div" onclick="selectMaterial(this)" id="poliester">
                             <img src="assets/quimica.svg" alt="poliester">
                         </div>
                         <div class="option-span">
@@ -122,8 +122,8 @@
             </section>
             <section class="reference-image-container">
                 <span>Imagem de referência</span>
-                <input id="reference-image-input" type="text" placeholder="Insira o link">
-                <button id="reference-image-button">Confirmar pedido</button>
+                <input id="reference-image-input" onchange ="checkInputEvent(this)" onkeyup="checkInputEvent(this)" type="text" placeholder="Insira o link">
+                <button id="reference-image-button" onclick="purchase()" disabled>Confirmar pedido</button>
             </section>
         </section>
     </main>
@@ -191,6 +191,7 @@
                 </div>
             </div>
         </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

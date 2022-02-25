@@ -2,7 +2,6 @@ var featuresSelected = 0;
 var url = 'invalid';
 const refImageInput = document.querySelector('#reference-image-input')
 const refImageButton = document.querySelector('#reference-image-button');
-const lastOrdersData = [];
 
 function startApp() {
     userReception();
@@ -101,15 +100,20 @@ function validURL(str) {
     var pattern = new RegExp(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g); // fragment locator
     return !!pattern.test(str);
   }
+
+var tc1 = "https://yt3.ggpht.com/ytc/AKedOLQ6Ief26j8b1lgSA1OpXSCzJBlnlEEsWtQAfdwB=s900-c-k-c0x00ffffff-no-rj";
+    console.log(validURL(tc1), tc1); 
   
 function enableButton() {
     validateUrl();
-    if(featuresSelected == 3 && url === 'valid'){
+    if(featuresSelected == 3 && url == 'valid'){
+        
         document.getElementById("reference-image-button").disabled = false;
+        
         refImageButton.classList.add('enable');
     }else{
-        document.getElementById("reference-image-button").disabled = true;
-        refImageButton.classList.remove('enable');
+        console.log('not ok');
+        console.log(refImageInput)
     }
 }
 
@@ -121,48 +125,6 @@ function checkInputEvent(){
 function purchase() {
     alert("Encomenda confirmada, obrigado por escolher a Fashion Driven!");
 }
-
-function orderGet() {
-    const promise = axios.get('https://mock-api.driven.com.br/api/v4/shirts-api/shirts');
-    promise.then(() => {
-        renderizeLastOrders    
-    })
-}
-
-function renderizeLastOrders() {
-    const lastOrdersContainer = document.querySelector('.last-orders-container');
-    const id = promise.data.id;
-    const model = promise.data.model;
-    const neck = promise.data.neck;
-    const material = promise.data.material;
-    const owner = promise.data.owner;
-    const author = promise.data.author;
-    lastOrdersData = promise.data
-        for(i = 0; i <= (promise.data).length; i++){
-        lastOrdersContainer.innerHTML += `
-            <div class="last-order-box" id="${id}">
-                        <div class="last-orders-image">
-                            <img src="${image}" alt="pedido${id}">
-                        </div>
-                        <div class="last-orders-creator">
-                            <span>Criador: </span><span id="creator">${author}</span>
-                        </div>
-                    </div>
-            `
-        }    
-}
-
-// [
-//     {
-//         "id": number,
-//         "model": string,
-//         "neck": string,
-//         "material": string,
-//         "image": string,
-//         "owner": string,
-//         "author": string
-//     }
-// ]
 
 // const requisitesChecking = setInterval(enableButton, 500);
 // const inputChecking = setInterval(console.log(`tô chamando ${refImageInput} fora da enable button`), 500);
