@@ -1,11 +1,17 @@
-var featuresSelected = 0;
-var url = 'invalid';
+let featuresSelected = 0;
+let url = 'invalid URL';
 const refImageInput = document.querySelector('#reference-image-input')
 const refImageButton = document.querySelector('#reference-image-button');
-const lastOrdersData = [];
+let model = null;
+let neck = null;
+let material = null;
+let image = null;
+let owner = null;
+let author = null;
 
 function startApp() {
     userReception();
+    // getLastOrders();
 }
 startApp();
 
@@ -16,12 +22,45 @@ function userReception() {
     }else{
         startApp();
     }
+    owner = userName;
+    author = userName;
 }
 
-function selectModel(element) {
+function getLastOrders() {
+    const promise = axios.get('https://mock-api.driven.com.br/api/v4/shirts-api/shirts');
+    promise.then(renderizeLastOrders)
+}
+
+function renderizeLastOrders(answer) {
+    const lastOrdersContainer = document.querySelector('.last-orders-container');
+    for(i = 0; i < (answer.data).length; i++){
+        const id = answer.data.id;
+        const image = answer.data[i].image;
+        const model = answer.data[i].model;
+        const neck = answer.data[i].neck;
+        const material = answer.data[i].material;
+        const owner = answer.data[i].owner;
+        const author = answer.data[i].author;
+        if(i >= (answer.data.length) - 10){
+            const order = `
+                <div class="last-order-box" id="${id}">
+                    <div class="last-orders-image">
+                        <img src="${image}" alt="pedido${id}">
+                    </div>
+                    <div class="last-orders-creator">
+                        <span>Criador: </span><span id="creator">${author}</span>
+                    </div>
+                </div>
+            `
+            lastOrdersContainer.innerHTML += order;
+        }
+    }    
+}
+
+function selectModel(element) { 
     const tShirt = document.querySelector('#t-shirt');
     const tankTop = document.querySelector('#tank-top');
-    const longSleeves = document.querySelector('#long-sleeves');
+    const longSleeves = document.querySelector('#long');
     const selectedModel = element
     selectedModel.classList.toggle("selected")
     
@@ -38,36 +77,40 @@ function selectModel(element) {
         tankTop.classList.remove("selected");
         featuresSelected = featuresSelected + 1;
     }
+    model = element.id;
     enableButton();
+    console.log(`Model selected: ${model}`)
 }
 
 function selectNeck(element) {
     const vNeck = document.querySelector('#v-neck');
-    const shirt = document.querySelector('#shirt');
-    const poloShirt = document.querySelector('#polo-shirt');
+    const round = document.querySelector('#round');
+    const poloShirt = document.querySelector('#polo');
     const selectedNeck = element
     selectedNeck.classList.toggle("selected")
     
     if(selectedNeck == vNeck){
-        shirt.classList.remove("selected");
+        round.classList.remove("selected");
         poloShirt.classList.remove("selected");
         featuresSelected = featuresSelected + 1;
-    }else if(selectedNeck == shirt){
+    }else if(selectedNeck == round){
         vNeck.classList.remove("selected");
         poloShirt.classList.remove("selected");
         featuresSelected = featuresSelected + 1;
     }else if(selectedNeck == poloShirt){
         vNeck.classList.remove("selected");
-        shirt.classList.remove("selected");
+        round.classList.remove("selected");
         featuresSelected = featuresSelected + 1;
     }
+    neck = element.id;
     enableButton();
+    console.log(`Neck selected: ${neck}`)
 }
 
 function selectMaterial(element) {
     const silk = document.querySelector('#silk');
-    const organicCotton = document.querySelector('#organic-cotton');
-    const poliester = document.querySelector('#poliester');
+    const organicCotton = document.querySelector('#cotton');
+    const poliester = document.querySelector('#polyester');
     const selectedMaterial = element
     selectedMaterial.classList.toggle("selected")
     
@@ -84,16 +127,21 @@ function selectMaterial(element) {
         organicCotton.classList.remove("selected");
         featuresSelected = featuresSelected + 1;
     }
+    material = element.id;
+    enableButton();
+    console.log(`Material selected: ${material}`)
+}
+
+function checkInputEvent(){
+    console.log(refImageInput.value)
     enableButton();
 }
 
 function validateUrl() {
     if(validURL(refImageInput.value) === true){
-        url = 'valid'
-        console.log(validURL(refImageInput.value), 'válido')
+        url = 'valid URL'
     }else{
-        console.log(validURL(refImageInput.value), 'inválido')
-        url = 'invalid'
+        url = 'invalid URL'
     }
 }
 
@@ -103,71 +151,42 @@ function validURL(str) {
   }
   
 function enableButton() {
-    validateUrl();
-    if(featuresSelected == 3 && url === 'valid'){
+    if(featuresSelected == 3 && url === 'valid URL'){
         document.getElementById("reference-image-button").disabled = false;
         refImageButton.classList.add('enable');
     }else{
         document.getElementById("reference-image-button").disabled = true;
         refImageButton.classList.remove('enable');
     }
+    validateUrl();
 }
 
-function checkInputEvent(){
-    enableButton();
-    console.log(refImageInput)
-}
 
 function purchase() {
-    alert("Encomenda confirmada, obrigado por escolher a Fashion Driven!");
+    image = refImageInput.value
+    orderPost();
 }
 
-function orderGet() {
-    const promise = axios.get('https://mock-api.driven.com.br/api/v4/shirts-api/shirts');
+function orderPost() {
+    const orderPostObject= {
+        model: `${model}`,
+        neck: `${neck}`,
+        material: `${material}`,
+        image: `${image}`,
+        owner: `${owner}`,
+        author: `${author}`
+    }
+    const promise = axios.post('https://mock-api.driven.com.br/api/v4/shirts-api/shirts', orderPostObject);
+
     promise.then(() => {
-        renderizeLastOrders    
+        alert(`Encomenda confirmada ${userName}! obrigado por escolher a Fashion Driven!`)
+    });
+
+    promis.catch(() => {
+        alert(`Ops ${userName}, não conseguimos processar a sua encomenda =[`);
     })
+
+
 }
 
-function renderizeLastOrders() {
-    const lastOrdersContainer = document.querySelector('.last-orders-container');
-    const id = promise.data.id;
-    const model = promise.data.model;
-    const neck = promise.data.neck;
-    const material = promise.data.material;
-    const owner = promise.data.owner;
-    const author = promise.data.author;
-    lastOrdersData = promise.data
-        for(i = 0; i <= (promise.data).length; i++){
-        lastOrdersContainer.innerHTML += `
-            <div class="last-order-box" id="${id}">
-                        <div class="last-orders-image">
-                            <img src="${image}" alt="pedido${id}">
-                        </div>
-                        <div class="last-orders-creator">
-                            <span>Criador: </span><span id="creator">${author}</span>
-                        </div>
-                    </div>
-            `
-        }    
-}
-
-// [
-//     {
-//         "id": number,
-//         "model": string,
-//         "neck": string,
-//         "material": string,
-//         "image": string,
-//         "owner": string,
-//         "author": string
-//     }
-// ]
-
-// const requisitesChecking = setInterval(enableButton, 500);
-// const inputChecking = setInterval(console.log(`tô chamando ${refImageInput} fora da enable button`), 500);
-
-// function postNewModel() {
-
-// }
 
