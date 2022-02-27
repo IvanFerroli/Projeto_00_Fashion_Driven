@@ -29,12 +29,14 @@ function userReception() {
 }
 
 function getLastOrders() {
+    alert("getLastOrders chamada")
     const promise = axios.get('https://mock-api.driven.com.br/api/v4/shirts-api/shirts');
     promise.then(renderizeLastOrders)
 }
 
 function renderizeLastOrders(answer) {
-    const lastOrdersContainer = document.querySelector('.last-orders-container');
+    let lastOrdersContainer = document.querySelector('.last-orders-container');
+    lastOrdersContainer.innerHTML = '';
     for(i = 0; i < (answer.data).length; i++){
         id = answer.data[i].id;
         model = answer.data[i].model;
@@ -199,9 +201,8 @@ function purchaseFromLastOrders(element) {
         const promise = axios.post('https://mock-api.driven.com.br/api/v4/shirts-api/shirts', orderPostObject);
 
         promise.then(() => {
-            alert(`Encomenda confirmada! obrigado por escolher a Fashion Driven!`)
-            getLastOrders
-            window.location.reload
+            alert(`Encomenda confirmada! obrigado por escolher a Fashion Driven!`);
+            getLastOrders();
         });
     
         promise.catch(() => {
@@ -222,9 +223,8 @@ function orderPost() {
     const promise = axios.post('https://mock-api.driven.com.br/api/v4/shirts-api/shirts', orderPostObject);
 
     promise.then(() => {
-        alert(`Encomenda confirmada! obrigado por escolher a Fashion Driven!`)
-        getLastOrders
-        window.location.reload
+        alert(`Encomenda confirmada! obrigado por escolher a Fashion Driven!`);
+        getLastOrders();
     });
 
     promise.catch(() => {
