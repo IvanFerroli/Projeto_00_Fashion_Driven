@@ -88,23 +88,31 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 201.6px;
-    height: 100%;
+    min-width: 201.6px;
+    height: 236.5px;
     background-color: #FFFFFF;
     border-radius: 10px;
     margin-right: 16.5px;
 }
-.last-order-image{
-    max-height: 180px;
-    max-width: 180px;
+.last-orders-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    width: 180px;
 }
-.last-order-image img{
-    height: 100%;
-    width: 100%;
+.last-orders-image img{
+    max-height: 100%;
+    max-width: 100%;
 }
 .last-orders-creator{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     bottom: 0;
+    max-width: 195px;
+    max-height: 25px;
 }
 .last-orders-creator span{
     font-family: Roboto;
@@ -153,13 +161,14 @@ footer{
     align-items: center;
 }
 .option-span{
-    margin-bottom: 0;
+    text-align: center;
 }
 .round-div{
     display: flex;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    align-items: center;
+    min-width: 100px;
+    min-height: 100px;
     background-color: #F2F2F2;
     border: 0.5px solid #C4C4C4;
     border-radius: 50%;
@@ -167,9 +176,6 @@ footer{
 .round-div img{
     max-width: 80px;
     max-height: 80px;
-}
-.round-div span{
-    margin-bottom: 0;
 }
 input{
     position: absolute;
@@ -213,4 +219,7 @@ button{
 }
 .enable{
     background-color: #404eed;
+}
+.hidden{
+    display: none;
 }

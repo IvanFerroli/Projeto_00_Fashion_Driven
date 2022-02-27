@@ -2,16 +2,18 @@ let featuresSelected = 0;
 let url = 'invalid URL';
 const refImageInput = document.querySelector('#reference-image-input')
 const refImageButton = document.querySelector('#reference-image-button');
+let id = null;
 let model = null;
 let neck = null;
 let material = null;
 let image = null;
 let owner = null;
 let author = null;
+let space = "⠀";
 
 function startApp() {
     userReception();
-    // getLastOrders();
+    getLastOrders();
 }
 startApp();
 
@@ -34,22 +36,30 @@ function getLastOrders() {
 function renderizeLastOrders(answer) {
     const lastOrdersContainer = document.querySelector('.last-orders-container');
     for(i = 0; i < (answer.data).length; i++){
-        const id = answer.data.id;
-        const image = answer.data[i].image;
-        const model = answer.data[i].model;
-        const neck = answer.data[i].neck;
-        const material = answer.data[i].material;
-        const owner = answer.data[i].owner;
-        const author = answer.data[i].author;
+        id = answer.data[i].id;
+        model = answer.data[i].model;
+        neck = answer.data[i].neck;
+        material = answer.data[i].material;
+        image = answer.data[i].image;
+        owner = answer.data[i].owner;
+        author = answer.data[i].owner;
         if(i >= (answer.data.length) - 10){
             const order = `
-                <div class="last-order-box" id="${id}">
-                    <div class="last-orders-image">
+                <div class="last-order-box" id="${id}" onclick="purchaseFromLastOrders(this)">
+                    <div width="180px" height="180px" class="last-orders-image">
                         <img src="${image}" alt="pedido${id}">
                     </div>
                     <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">${author}</span>
+                        <span>Criador:</span> <span id="creator">${space}${author}</span>
                     </div>
+                    <ul class="orders-data hidden ${id}">
+                        <li class="model-${id}" id="${model}"></li>
+                        <li class="neck-${id}" id="${neck}"></li>
+                        <li class="material-${id}" id="${material}"></li>
+                        <li class="image-${id}" id="${image}"></li>
+                        <li class="owner-${id}" id="${owner}"></li>
+                        <li class="author-${id}" id="${author}"></li>
+                    </ul>
                 </div>
             `
             lastOrdersContainer.innerHTML += order;
@@ -59,7 +69,7 @@ function renderizeLastOrders(answer) {
 
 function selectModel(element) { 
     const tShirt = document.querySelector('#t-shirt');
-    const tankTop = document.querySelector('#tank-top');
+    const tankTop = document.querySelector('#top-tank');
     const longSleeves = document.querySelector('#long');
     const selectedModel = element
     selectedModel.classList.toggle("selected")
@@ -161,10 +171,43 @@ function enableButton() {
     validateUrl();
 }
 
-
 function purchase() {
     image = refImageInput.value
     orderPost();
+}
+
+function purchaseFromLastOrders(element) {
+    const buyingDecision = prompt(`Você deseja fazer o pedido desta peça? (Sim/Não)`);
+    const buyingDecisionLowerCase = buyingDecision.toLocaleLowerCase();
+    const elementId = element.id;
+    model = document.querySelector(`.model-${elementId}`).id;
+    neck = document.querySelector(`.neck-${elementId}`).id;
+    material = document.querySelector(`.material-${elementId}`).id;
+    image = document.querySelector(`.image-${elementId}`).id;
+    owner = document.querySelector(`.owner-${elementId}`).id;
+    author = document.querySelector(`.author-${elementId}`).id;
+    const orderPostObject= {
+        model: `${model}`,
+        neck: `${neck}`,
+        material: `${material}`,
+        image: `${image}`,
+        owner: `${owner}`,
+        author: `${author}`
+    }
+    if(buyingDecisionLowerCase === "sim"){
+    
+        const promise = axios.post('https://mock-api.driven.com.br/api/v4/shirts-api/shirts', orderPostObject);
+
+        promise.then(() => {
+            alert(`Encomenda confirmada! obrigado por escolher a Fashion Driven!`)
+            getLastOrders
+            window.location.reload
+        });
+    
+        promise.catch(() => {
+            alert(`Ops, não conseguimos processar a sua encomenda =[`);
+        });
+    }
 }
 
 function orderPost() {
@@ -179,14 +222,16 @@ function orderPost() {
     const promise = axios.post('https://mock-api.driven.com.br/api/v4/shirts-api/shirts', orderPostObject);
 
     promise.then(() => {
-        alert(`Encomenda confirmada ${userName}! obrigado por escolher a Fashion Driven!`)
+        alert(`Encomenda confirmada! obrigado por escolher a Fashion Driven!`)
+        getLastOrders
+        window.location.reload
     });
 
-    promis.catch(() => {
-        alert(`Ops ${userName}, não conseguimos processar a sua encomenda =[`);
-    })
-
-
+    promise.catch(() => {
+        alert(`Ops, não conseguimos processar a sua encomenda =[`);
+    });
 }
+
+
 
 
