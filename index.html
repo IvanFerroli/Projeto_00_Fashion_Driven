@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="assets/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="assets/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
@@ -25,9 +26,12 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <header>
         <img src="assets/header.svg" alt="fashion-driven-logo">
@@ -44,7 +48,7 @@
                         <div class="option-span">
                             <span>T-shirt</span>
                         </div>
-                    </div>  
+                    </div>
                     <div class="option-box">
                         <div class="round-div" onclick="selectModel(this)" id="top-tank">
                             <img src="assets/tank-top.svg" alt="tank-top">
@@ -52,7 +56,7 @@
                         <div class="option-span">
                             <span>Regata</span>
                         </div>
-                    </div> 
+                    </div>
                     <div class="option-box">
                         <div class="round-div" onclick="selectModel(this)" id="long">
                             <img src="assets/long-sleeves.svg" alt="long-sleeves">
@@ -60,7 +64,7 @@
                         <div class="option-span">
                             <span>Manga longa</span>
                         </div>
-                    </div> 
+                    </div>
             </section>
             <section class="feature-selection-container neck-selection-container">
                 <span>Escolha a gola</span>
@@ -72,7 +76,7 @@
                         <div class="option-span">
                             <span>Gola V</span>
                         </div>
-                    </div> 
+                    </div>
                     <div class="option-box">
                         <div class="round-div" onclick="selectNeck(this)" id="round">
                             <img src="assets/shirt.svg" alt="shirt">
@@ -80,7 +84,7 @@
                         <div class="option-span">
                             <span>Gola Redonda</span>
                         </div>
-                    </div> 
+                    </div>
                     <div class="option-box">
                         <div class="round-div" onclick="selectNeck(this)" id="polo">
                             <img src="assets/polo-shirt.svg" alt="polo-shirt">
@@ -88,7 +92,7 @@
                         <div class="option-span">
                             <span>Gola Polo</span>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </section>
             <section class="feature-selection-container material-selection-container">
@@ -101,7 +105,7 @@
                         <div class="option-span">
                             <span>Seda</span>
                         </div>
-                    </div> 
+                    </div>
                     <div class="option-box">
                         <div class="round-div" onclick="selectMaterial(this)" id="cotton">
                             <img src="assets/organic-cotton.svg" alt="organic-cotton">
@@ -109,7 +113,7 @@
                         <div class="option-span">
                             <span>Algodão</span>
                         </div>
-                    </div> 
+                    </div>
                     <div class="option-box">
                         <div class="round-div" onclick="selectMaterial(this)" id="polyester">
                             <img src="assets/quimica.svg" alt="poliester">
@@ -117,81 +121,27 @@
                         <div class="option-span">
                             <span>Poliéster</span>
                         </div>
-                    </div> 
+                    </div>
                 </div>
             </section>
             <section class="reference-image-container">
                 <span>Imagem de referência</span>
-                <input id="reference-image-input" onchange ="checkInputEvent(this)" onkeyup="checkInputEvent(this)" type="text" placeholder="Insira o link">
+                <input id="reference-image-input" onchange="checkInputEvent(this)" onkeyup="checkInputEvent(this)"
+                    type="text" placeholder="Insira o link">
                 <button id="reference-image-button" onclick="purchase()" disabled>Confirmar pedido</button>
             </section>
         </section>
     </main>
-        <aside>
-            <img src="assets/Ilustração.svg" alt="ilustração">
-        </aside>
-        <footer>
-            <span class="footer-title">Últimos pedidos</span>
-            <div class="last-orders-container">
-                <!-- <div class="last-order-box">
-                    <div class="last-orders-image">
-                        <img src="assets/Blusa1.png" alt="blusa1">
-                    </div>
-                    <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">Agata</span>
-                    </div>
-                </div>
-                <div class="last-order-box">
-                    <div class="last-orders-image">
-                        <img src="assets/Blusa1.png" alt="blusa1">
-                    </div>
-                    <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">Agata</span>
-                    </div>
-                </div>
-                <div class="last-order-box">
-                    <div class="last-orders-image">
-                        <img src="assets/Blusa1.png" alt="blusa1">
-                    </div>
-                    <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">Agata</span>
-                    </div>
-                </div>
-                <div class="last-order-box">
-                    <div class="last-orders-image">
-                        <img src="assets/Blusa1.png" alt="blusa1">
-                    </div>
-                    <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">Agata</span>
-                    </div>
-                </div>
-                <div class="last-order-box">
-                    <div class="last-orders-image">
-                        <img src="assets/Blusa1.png" alt="blusa1">
-                    </div>
-                    <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">Agata</span>
-                    </div>
-                </div>
-                <div class="last-order-box">
-                    <div class="last-orders-image">
-                        <img src="assets/Blusa1.png" alt="blusa1">
-                    </div>
-                    <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">Agata</span>
-                    </div>
-                </div>
-                <div class="last-order-box">
-                    <div class="last-orders-image">
-                        <img src="assets/Blusa1.png" alt="blusa1">
-                    </div>
-                    <div class="last-orders-creator">
-                        <span>Criador: </span><span id="creator">Agata</span>
-                    </div>
-                </div> -->
-            </div>
-        </footer>
+    <aside>
+        <img src="assets/Ilustração.svg" alt="ilustração">
+    </aside>
+    <footer>
+        <span class="footer-title">Últimos pedidos</span>
+        <div class="last-orders-container">
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
